@@ -190,11 +190,10 @@ Thank you to all the people who contributed to **DiscordJS-V14-Bot-Template**!
 
 <img src="https://contrib.rocks/image?repo=TFAGaming/DiscordJS-V14-Bot-Template">
 
-## Support
-Join our Discord server if you need any help!
+## Soporte
 
-<a href="https://discord.gg/E6VFACWu5V">
-  <img src="https://discord.com/api/guilds/918611797194465280/widget.png?style=banner3">
+<a href="https://discord.gg/5vzWtsba">
+  <img src="https://discord.com/api/guilds/1222991487344705536/widget.json">
 </a>
 
 ## License
