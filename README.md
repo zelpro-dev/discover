@@ -192,9 +192,7 @@ Thank you to all the people who contributed to **DiscordJS-V14-Bot-Template**!
 
 ## Soporte
 
-<a href="https://discord.gg/5vzWtsba">
-  <img src="https://discord.com/api/guilds/1222991487344705536/widget.json">
-</a>
+<iframe src="https://discord.com/widget?id=1222991487344705536&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
 ## License
 [**GPL-3.0**](./LICENSE), General Public License v3
