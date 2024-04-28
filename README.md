@@ -1,3 +1,3 @@
 # <samp>Discover</samp> 
 
-Bot en desarrollo.
+Bot en desarrollo. BETA
