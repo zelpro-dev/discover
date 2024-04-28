@@ -1,6 +1,8 @@
 const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const ExtendedClient = require('../../../class/ExtendedClient');
 const { time } = require('../../../functions');
+const config = require('../../../config');
+const { embedSettings } = require("../../../config");
 
 module.exports = {
     structure: new SlashCommandBuilder()
@@ -53,7 +55,7 @@ module.exports = {
                     .setTitle('User info - ' + user.username)
                     .setThumbnail(member.displayAvatarURL())
                     .setDescription(`${arr.join('\n')}`)
-                    .setColor('Blurple')
+                    .setColor(embedSettings.color)
             ]
         });
 
