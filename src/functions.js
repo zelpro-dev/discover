@@ -13,7 +13,7 @@ const log = (string, style) => {
     warn: { prefix: chalk.yellow("[WARNING]"), logFunction: console.warn },
     done: { prefix: chalk.green("[SUCCESS]"), logFunction: console.log },
   };
-  
+
   const selectedStyle = styles[style] || { logFunction: console.log };
   selectedStyle.logFunction(`${selectedStyle.prefix || ""} ${string}`);
 };
