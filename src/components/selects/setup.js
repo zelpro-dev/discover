@@ -31,9 +31,9 @@ module.exports = {
 
                 const show_modal = new ButtonBuilder()
                     .setCustomId(`setup_modal_servidor`)
-                    .setLabel('Mostrar Formulario')
+                    .setLabel('Rellenar Formulario')
                     .setEmoji("📃")
-                    .setStyle(ButtonStyle.Success);
+                    .setStyle(ButtonStyle.Primary);
 
                 const button = new ActionRowBuilder()
                     .addComponents(show_modal);
