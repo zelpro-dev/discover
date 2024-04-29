@@ -1,5 +1,6 @@
-const { ChannelType, Message } = require("discord.js");
+const { ChannelType, Message, EmbedBuilder } = require("discord.js");
 const config = require("../../config");
+const { embedSettings } = require("../../config");
 const { log } = require("../../functions");
 const GuildSchema = require("../../schemas/GuildSchema");
 const ExtendedClient = require("../../class/ExtendedClient");
@@ -15,7 +16,39 @@ module.exports = {
      * @returns
      */
     run: async (client, message) => {
+
         if (message.author.bot || message.channel.type === ChannelType.DM) return;
+
+        /*const embed = new EmbedBuilder()
+        .setTitle("Discover - Normas")
+        .setDescription(`Estas son las normas oficiales del servidor, uniéndote aceptas cumplir las normas. Si incumples alguna de estas normas serás sancionado.
+        
+        1️⃣ **Respeto**
+        Trata a todos los miembros con cortesía y consideración.
+
+        2️⃣ **Spam**
+        Evita el envío excesivo de mensajes, enlaces o imágenes.
+
+        3️⃣ **Contenidos**
+        No compartas material ofensivo, inapropiado o ilegal.
+
+        4️⃣ **Acoso**
+        Cualquier forma de acoso, bullying o discriminación no será tolerada.
+
+        5️⃣ **Canales**
+        Respeta las normas específicas de cada canal.
+
+        6️⃣ **Privacidad**
+        Respeta la privacidad de los demás y evita compartir información personal.
+        `)
+        .setColor(embedSettings.color)*/
+
+        /*const embed = new EmbedBuilder()
+        .setTitle("Discover - Primeros Pasos")
+        .setDescription(`Este canal se rellenará en futuras actualizaciones...`)
+        .setColor(embedSettings.color)*/
+
+        return message.channel.send({ embeds: [embed] })
 
         if (!config.handler.commands.prefix) return;
 
