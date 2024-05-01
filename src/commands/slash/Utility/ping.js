@@ -6,7 +6,7 @@ const { embedSettings } = require("../../../config")
 module.exports = {
     structure: new SlashCommandBuilder()
         .setName('ping')
-        .setDescription('Replies with pong!'),
+        .setDescription('Revisa la latencia del Bot'),
     options: {
         cooldown: 5000
     },

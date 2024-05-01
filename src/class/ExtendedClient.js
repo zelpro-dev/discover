@@ -35,7 +35,7 @@ module.exports = class extends Client {
                 activities: [{
                     name: 'Developing',
                     type: 4,
-                    state: 'Desarrollando el Bot...'
+                    state: ' Utiliza /setup'
                 }]
             }
         });

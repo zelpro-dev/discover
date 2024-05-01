@@ -41,7 +41,7 @@ module.exports = {
                 await interaction.update({ embeds: [embed_server], components: [button] })
                 break;
             case "bot":
-                await interaction.update({ content: "*Este módulo está aún en desarrollo...*", embeds: [], components: [] })
+                await interaction.update({ content: "⚠️ Este módulo está en desarrollo...", embeds: [], components: [] })
                 break;
         }
 

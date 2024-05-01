@@ -4,6 +4,7 @@ const config = require("../../../config");
 const { embedSettings } = require("../../../config")
 const icon = require('../../../icon.json');
 const GuildSchema = require("../../../schemas/GuildSchema");
+const moment = require('moment-timezone');
 
 module.exports = {
   structure: new SlashCommandBuilder()
@@ -20,21 +21,17 @@ module.exports = {
 
     const embed = new EmbedBuilder()
       .setTitle("Discover")
-      .setDescription(`¡Bienvenido al comando de configuración! Soy Discover, tu asistente personal dedicado a dar a conocer tu propio servidor o bot.
-
-Con este comando puedes iniciar el proceso de subida de tu servidor o bot de manera rápida y sencilla
-
-¡No dudes en pedir ayuda si la necesitas! Estoy aquí para hacer que tu experiencia de subida sea lo más fluida y exitosa posible.`)
+      .setDescription(`¡Bienvenido al comando de descubrimiento! Gracias a este comando podrás descubir servidores y bots (próximamente).`)
       .setColor(embedSettings.color)
 
     const module_menu = new ActionRowBuilder()
       .addComponents(
         new StringSelectMenuBuilder()
           .setCustomId("discover")
-          .setPlaceholder("➡️ Escoge que quieres buscar.")
+          .setPlaceholder("Escoge que quieres buscar.")
           .addOptions(
-            { label: "Servidor", value: "server", emoji: "⚙️" },
-            { label: "Bot", value: "bot", emoji: "🤖" },
+            { label: "Servidor", value: "server" },
+            { label: "Bot", value: "bot" },
           )
       );
 
@@ -72,11 +69,14 @@ Con este comando puedes iniciar el proceso de subida de tu servidor o bot de man
               return interaction.editReply({ content: "⚠️ Hubo un error, vuelve a intentarlo en unos minutos.", embeds: [], components: [] })
             }
 
+            const lastBoostDate = new Date(item.lastBoost).toISOString()
+            const lastBoost = moment(lastBoostDate).unix()
+
             const embed = new EmbedBuilder()
               .setTitle(guild.name)
               .setThumbnail(guild.iconURL({ dynamic: true, size: 4096 }))
-              .setDescription(`GuildID: ${item.guildID}\nDescripción: ${item.descripcion}\nLast Boost: ${item.lastBoost}\nCreado en: ${item.createdAt}`)
-              .setFooter({ text: `📃 ${currentPage + 1}` })
+              .setDescription(`${item.descripcion}\n\nÚltima vez boosteado <t:${lastBoost}:R>\n[**Unirse**](${item.invite})`)
+              .setFooter({ text: `${currentPage + 1}/${totalPages}` })
               .setColor(embedSettings.color)
 
             return embed;
@@ -108,7 +108,7 @@ Con este comando puedes iniciar el proceso de subida de tu servidor o bot de man
           break;
         case "bot":
 
-
+          await interaction.editReply({ content: "⚠️ Este módulo está en desarrollo...", embeds: [], components: []})
 
           break;
       }

@@ -36,10 +36,10 @@ Con este comando puedes iniciar el proceso de subida de tu servidor o bot de man
     .addComponents(
       new StringSelectMenuBuilder()
         .setCustomId("setup")
-        .setPlaceholder("➡️ Escoge que quieres subir a Discover.")
+        .setPlaceholder("Escoge que quieres subir a Discover.")
         .addOptions(
-          { label: "Servidor", value: "server", emoji: "⚙️" },
-          { label: "Bot", value: "bot", emoji: "🤖" },
+          { label: "Servidor", value: "server" },
+          { label: "Bot", value: "bot" },
         )
     );
 
