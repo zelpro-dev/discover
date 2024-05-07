@@ -23,6 +23,7 @@ module.exports = {
       .setTitle("Discover")
       .setDescription(`¡Bienvenido al comando de descubrimiento! Gracias a este comando podrás descubir servidores y bots (próximamente).`)
       .setColor(embedSettings.color)
+      .setFooter({ text: `Discover`, iconURL: embedSettings.icon })
 
     const module_menu = new ActionRowBuilder()
       .addComponents(
@@ -39,23 +40,24 @@ module.exports = {
 
     const collector = interaction.channel.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 30_000 });
 
-    function getPageButtons(currentPage, totalPages) {
+    function getPageButtons(currentPage, totalPages, item) {
       const buttons = [];
-      buttons.push(new ButtonBuilder().setCustomId('prev').setEmoji('1231561014965964840').setStyle(ButtonStyle.Secondary).setDisabled(currentPage === 0));
-      buttons.push(new ButtonBuilder().setCustomId('next').setEmoji('1231561015817273396').setStyle(ButtonStyle.Secondary).setDisabled(currentPage === totalPages - 1));  
+      buttons.push(new ButtonBuilder().setCustomId('prev').setEmoji('1231561014965964840').setStyle(ButtonStyle.Primary).setDisabled(currentPage === 0));
+      buttons.push(new ButtonBuilder().setCustomId('next').setEmoji('1231561015817273396').setStyle(ButtonStyle.Primary).setDisabled(currentPage === totalPages - 1));
+      buttons.push(new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel("Unirse").setURL(item.invite));
       return new ActionRowBuilder().addComponents(buttons);
     }
 
     collector.on('collect', async i => {
       if (i.user.id !== interaction.user.id) {
-        i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
+        i.reply({ content: `*Este botón no te pertenece!*`, ephemeral: true });
       }
       await i.deferUpdate()
       const seleccion = i.values.join(" ")
       switch (seleccion) {
         case "server":
 
-          const guilds = await GuildSchema.find().sort({ lastBoost: -1 });
+          const guilds = await GuildSchema.find().sort({ lastBoost: 1 });
           const totalPages = Math.ceil(guilds.length);
 
           let currentPage = 0;
@@ -75,14 +77,14 @@ module.exports = {
             const embed = new EmbedBuilder()
               .setTitle(guild.name)
               .setThumbnail(guild.iconURL({ dynamic: true, size: 4096 }))
-              .setDescription(`${item.descripcion}\n\nÚltima vez boosteado <t:${lastBoost}:R>\n[**Unirse**](${item.invite})`)
-              .setFooter({ text: `${currentPage + 1}/${totalPages}` })
+              .setDescription(`> ${item.descripcion}\n\nÚltima vez boosteado <t:${lastBoost}:R>`)
+              .setFooter({ text: `Discover - Página ${currentPage + 1} de ${totalPages}`, iconURL: embedSettings.icon })
               .setColor(embedSettings.color)
 
             return embed;
           };
 
-          await interaction.editReply({ embeds: [generatePageEmbed(currentPage, currentItem)], components: [getPageButtons(currentPage, totalPages)] });
+          await interaction.editReply({ embeds: [generatePageEmbed(currentPage, currentItem)], components: [getPageButtons(currentPage, totalPages, currentItem)] });
 
           const collector1 = interaction.channel.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000 });
 
@@ -95,7 +97,7 @@ module.exports = {
               }
               await i.deferUpdate()
               const currentItem = guilds[currentPage];
-              await interaction.editReply({ embeds: [generatePageEmbed(currentPage, currentItem)], components: [getPageButtons(currentPage, totalPages)] });
+              await interaction.editReply({ embeds: [generatePageEmbed(currentPage, currentItem)], components: [getPageButtons(currentPage, totalPages, currentItem)] });
             } catch (error) {
               console.error('Error al cambiar de página:', error);
             }
@@ -108,7 +110,7 @@ module.exports = {
           break;
         case "bot":
 
-          await interaction.editReply({ content: "⚠️ Este módulo está en desarrollo...", embeds: [], components: []})
+          await interaction.editReply({ content: "⚠️ Este módulo está en desarrollo...", embeds: [], components: [] })
 
           break;
       }

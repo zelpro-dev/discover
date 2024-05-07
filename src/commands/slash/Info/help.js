@@ -24,11 +24,12 @@ module.exports = {
         await interaction.followUp({
             embeds: [
                 new EmbedBuilder()
-                    .setTitle('Help command')
+                    .setTitle('Ayuda')
                     .addFields(
                         { name: 'Slash commands', value: `${mapIntCmds.join('\n')}` },
                     )
                     .setColor(embedSettings.color)
+                    .setFooter({ text: `Discover - Help`, iconURL: embedSettings.icon })
             ]
         });
 

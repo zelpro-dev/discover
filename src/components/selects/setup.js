@@ -25,9 +25,10 @@ module.exports = {
                 if (interaction.user.id !== ownerId) return interaction.update({ content: `⚠️ No eres el dueño de este servidor` })
 
                 const embed_server = new EmbedBuilder()
-                    .setTitle("Discover - Servidor")
+                    .setTitle("Servidor")
                     .setDescription(`A continuación verás un botón el cual te mostrará un formulario. Se te pedirá una descripción para tu servidor.\n¡Ten imaginación y escribe algo que te anime a entrar a tu servidor!`)
                     .setColor(embedSettings.color)
+                    .setFooter({ text: `Discover - Setup`, iconURL: embedSettings.icon })
 
                 const show_modal = new ButtonBuilder()
                     .setCustomId(`setup_modal_servidor`)

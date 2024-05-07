@@ -31,6 +31,7 @@ Con este comando puedes iniciar el proceso de subida de tu servidor o bot de man
 
 ¡No dudes en pedir ayuda si la necesitas! Estoy aquí para hacer que tu experiencia de subida sea lo más fluida y exitosa posible.`)
       .setColor(embedSettings.color)
+      .setFooter({ text: `Discover - Setup`, iconURL: embedSettings.icon })
 
     const module_menu = new ActionRowBuilder()
     .addComponents(

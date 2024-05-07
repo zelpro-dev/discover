@@ -16,7 +16,7 @@ module.exports = {
     run: async (client, invite) => {
 
         const guild = await GuildSchema.findOne({ guildID: invite.guild.id })
-        if(!guild) return;
+        if (!guild) return;
 
         const new_invite = await invite.channel.createInvite({
             maxUses: 0,
@@ -27,9 +27,10 @@ module.exports = {
         await guild.save()
 
         const embed = new EmbedBuilder()
-      .setTitle("Discover - Alerta")
-      .setDescription(`Hola, venía a decirte que se ha borrado la invitación: ${invite.url} de ${invite.guild.name}. He generado otra para que los usuarios se puedan seguir uniendo.\n\n🚩 ${new_invite.url}`)
-      .setColor(embedSettings.color)
+            .setTitle("Alerta")
+            .setDescription(`Hola, venía a decirte que se ha borrado la invitación: ${invite.url} de ${invite.guild.name}. He generado otra para que los usuarios se puedan seguir uniendo.\n\n🚩 ${new_invite.url}`)
+            .setColor(embedSettings.color)
+            .setFooter({ text: `Discover - Alerta`, iconURL: embedSettings.icon })
 
         const owner = client.users.cache.get(invite.guild.ownerId).send({ embeds: [embed] })
 
