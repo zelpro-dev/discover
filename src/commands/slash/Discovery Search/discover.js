@@ -40,6 +40,7 @@ module.exports = {
 
     const collector = interaction.channel.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 30_000 });
 
+    
     function getPageButtons(currentPage, totalPages, item) {
       const buttons = [];
       buttons.push(new ButtonBuilder().setCustomId('prev').setEmoji('1231561014965964840').setStyle(ButtonStyle.Primary).setDisabled(currentPage === 0));
