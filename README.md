@@ -1,3 +1,3 @@
-# <samp>Discover</samp> 
+# <samp>GrowUp</samp> 
 
 Bot en desarrollo. BETA
