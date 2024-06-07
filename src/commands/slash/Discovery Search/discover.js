@@ -23,7 +23,6 @@ module.exports = {
       .setTitle("Discover")
       .setDescription(`¡Bienvenido al comando de descubrimiento! Gracias a este comando podrás descubir servidores y bots (próximamente).`)
       .setColor(embedSettings.color)
-      .setFooter({ text: `Discover`, iconURL: embedSettings.icon })
 
     const module_menu = new ActionRowBuilder()
       .addComponents(
@@ -78,7 +77,6 @@ module.exports = {
               .setTitle(guild.name)
               .setThumbnail(guild.iconURL({ dynamic: true, size: 4096 }))
               .setDescription(`> ${item.descripcion}\n\nÚltima vez boosteado <t:${lastBoost}:R>`)
-              .setFooter({ text: `Discover - Página ${currentPage + 1} de ${totalPages}`, iconURL: embedSettings.icon })
               .setColor(embedSettings.color)
 
             return embed;

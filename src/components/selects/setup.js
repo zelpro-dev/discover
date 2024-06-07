@@ -28,7 +28,6 @@ module.exports = {
                     .setTitle("Servidor")
                     .setDescription(`A continuación verás un botón el cual te mostrará un formulario. Se te pedirá una descripción para tu servidor.\n¡Ten imaginación y escribe algo que te anime a entrar a tu servidor!`)
                     .setColor(embedSettings.color)
-                    .setFooter({ text: `Discover - Setup`, iconURL: embedSettings.icon })
 
                 const show_modal = new ButtonBuilder()
                     .setCustomId(`setup_modal_servidor`)

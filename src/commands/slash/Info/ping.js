@@ -16,13 +16,7 @@ module.exports = {
      */
     run: async (client, interaction) => {
 
-        const embed = new EmbedBuilder()
-            .setTitle("Ping")
-            .setDescription(client.ws.ping + "ms")
-            .setColor(embedSettings.color)
-            .setFooter({ text: `Discover - Ping`, iconURL: embedSettings.icon })
-
-        await interaction.reply({ embeds: [embed] });
+        await interaction.reply({ content: "`" + client.ws.ping + "ms`" });
 
     }
 };

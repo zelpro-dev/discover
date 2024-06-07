@@ -29,7 +29,6 @@ module.exports = {
       .setTitle("Nueva Solicitud")
       .setDescription(`> **Guild:** ${interaction.guild.name} *(${interaction.guild.id})*\n> **Descripción:** ${descripcion}\n> **Invite:** ${invite.url}`)
       .setColor(embedSettings.color)
-      .setFooter({ text: `Discover - Solicitudes`, iconURL: embedSettings.icon })
 
     const aceptar = new ButtonBuilder()
       .setCustomId(`aceptar_servidor`)
@@ -60,7 +59,6 @@ module.exports = {
       .setTitle("Setup")
       .setDescription(`¡Enhorabuena! Has finalizado el setup, ahora tu servidor está en nuestra base de datos esperando para que sea aceptado por nuestro Staff, el bot te avisará si es aceptado, sea paciente! He generado una invitación para que cualquier persona se pueda unir al servidor, es la que se muestra debajo, por favor no la borres en ningún momento.`)
       .setColor(embedSettings.color)
-      .setFooter({ text: `Discover - Setup`, iconURL: embedSettings.icon })
 
     await interaction.update({ embeds: [embed2], components: [components] });
 

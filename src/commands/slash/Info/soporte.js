@@ -20,7 +20,6 @@ module.exports = {
             .setTitle("Soporte")
             .setDescription(`> Puedes unirte al servidor de soporte oficial mediante este enlace\nhttps://dsc.gg/discover-soporte`)
             .setColor(embedSettings.color)
-            .setFooter({ text: `Discover - Ping`, iconURL: embedSettings.icon })
 
         await interaction.reply({ embeds: [embed] });
 
