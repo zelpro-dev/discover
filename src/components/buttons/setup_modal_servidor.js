@@ -17,7 +17,7 @@ module.exports = {
 
         const setup_server = new ModalBuilder()
             .setCustomId('setup_server')
-            .setTitle('Discover - Setup');
+            .setTitle('Setup');
 
         const descripcion = new TextInputBuilder()
             .setCustomId('descripcion')

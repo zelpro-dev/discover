@@ -17,11 +17,9 @@ module.exports = {
      */
     run: async (client, interaction) => {
 
-        await interaction.deferReply();
-
         const mapIntCmds = client.applicationcommandsArray.map((v) => `\`${(v.type === 2 || v.type === 3) ? '' : '/'}${v.name}\`: ${v.description || '(No description)'}`);
 
-        await interaction.followUp({
+        await interaction.reply({
             embeds: [
                 new EmbedBuilder()
                     .setTitle('Ayuda')
@@ -29,7 +27,8 @@ module.exports = {
                         { name: 'Slash commands', value: `${mapIntCmds.join('\n')}` },
                     )
                     .setColor(embedSettings.color)
-            ]
+            ],
+            ephemeral: true
         });
 
     }

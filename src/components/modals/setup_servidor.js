@@ -17,7 +17,7 @@ module.exports = {
     const descripcion = interaction.fields.getTextInputValue('descripcion');
 
     const guild = await GuildSchema.findOne({ guildID: interaction.guild.id })
-    if (guild) return interaction.reply({ content: "⚠️ Este servidor ya está en Discover.", ephemeral: true })
+    if (guild) return interaction.reply({ content: "⚠️ Este servidor ya está en GrowUp.", ephemeral: true })
 
     if (interaction.user.id !== interaction.guild.ownerId) return interaction.reply({ content: "⚠️ No eres el dueño del servidor.", ephemeral: true })
 
@@ -49,7 +49,7 @@ module.exports = {
       .addComponents(aceptar, rechazar, id);
 
     client.channels.cache.get(requestServer).send({ embeds: [embed], components: [buttons] }).catch(error => { console.error('Error:', error.message); });
-    
+
     await GuildSchema.create({ guildID: interaction.guild.id, descripcion: descripcion, invite: invite }).catch(error => { console.error('Error:', error.message); });
 
     const button = new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel(invite.url).setURL(invite.url)

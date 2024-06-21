@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ButtonStyle, ButtonBuilder, ActionRowBuilder } = require('discord.js');
 const ExtendedClient = require('../../../class/ExtendedClient');
 const config = require("../../../config");
 const { embedSettings } = require("../../../config")
@@ -16,12 +16,16 @@ module.exports = {
      */
     run: async (client, interaction) => {
 
-        const embed = new EmbedBuilder()
-            .setTitle("Soporte")
-            .setDescription(`> Puedes unirte al servidor de soporte oficial mediante este enlace\nhttps://dsc.gg/discover-soporte`)
-            .setColor(embedSettings.color)
+        // ! CAMBIAR URL
+        const soporte = new ButtonBuilder()
+            .setLabel('Unirse')
+            .setURL("https://dsc.gg/discover-soporte")
+            .setStyle(ButtonStyle.Link);
 
-        await interaction.reply({ embeds: [embed] });
+        const button = new ActionRowBuilder()
+            .addComponents(soporte);
+
+        await interaction.reply({ content: `## Servidor de Soporte`, components: [button], ephemeral: true });
 
     }
 };

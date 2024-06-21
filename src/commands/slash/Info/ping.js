@@ -16,7 +16,7 @@ module.exports = {
      */
     run: async (client, interaction) => {
 
-        await interaction.reply({ content: "`" + client.ws.ping + "ms`" });
+        await interaction.reply({ content: "`" + client.ws.ping + "ms`", ephemeral: true });
 
     }
 };

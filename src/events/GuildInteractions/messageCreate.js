@@ -48,7 +48,7 @@ module.exports = {
         .setDescription(`Este canal se rellenará en futuras actualizaciones...`)
         .setColor(embedSettings.color)*/
 
-        return message.channel.send({ embeds: [embed] })
+        //return message.channel.send({ embeds: [embed] })
 
         if (!config.handler.commands.prefix) return;
 
