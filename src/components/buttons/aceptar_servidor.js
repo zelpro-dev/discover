@@ -35,7 +35,6 @@ module.exports = {
             .setLabel('Aceptado')
             .setStyle(ButtonStyle.Success)
             .setDisabled(true)
-            
 
         const button = new ActionRowBuilder()
             .addComponents(aceptado);

@@ -9,7 +9,7 @@ const moment = require('moment-timezone');
 module.exports = {
   structure: new SlashCommandBuilder()
     .setName("discover")
-    .setDescription("Encuentra lo que buscas con este comando."),
+    .setDescription("Encuentra lo que buscas con este comando"),
   options: {
     cooldown: 60000,
   },

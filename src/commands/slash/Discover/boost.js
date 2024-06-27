@@ -8,7 +8,7 @@ const moment = require('moment-timezone');
 module.exports = {
   structure: new SlashCommandBuilder()
     .setName("boost")
-    .setDescription("Boostea tu servidor o bot (próximamente)!"),
+    .setDescription("Boostea tu servidor!"),
   options: {
     cooldown: 5000,
   },
