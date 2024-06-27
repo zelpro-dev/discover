@@ -55,7 +55,7 @@ module.exports = {
       switch (seleccion) {
         case "buscar_discover":
 
-          const guilds = await GuildSchema.find({ solicitud: { $ne: 'pendiente' } }).sort({ lastBoost: 1 }).exec();
+          const guilds = await GuildSchema.find({ solicitud: { $ne: 'pendiente' } }).sort({ lastBoost: -1 });
           const totalPages = Math.ceil(guilds.length);
 
           let currentPage = 0;
@@ -85,9 +85,8 @@ module.exports = {
             }
 
             const embed = new EmbedBuilder()
-              .setTitle(guild.name)
-              .setThumbnail(guild.iconURL({ dynamic: true, size: 4096 }))
-              .setDescription(`> ${item.descripcion}`)
+              .setAuthor({ name: guild.name, iconURL: guild.iconURL({ dynamic: true, size: 128 }) })
+              .setDescription(`${item.descripcion}`)
               .addFields(
                 { name: 'Valoración', value: response, inline: true },
                 { name: 'Usuarios', value: `${guild.memberCount}`, inline: true },

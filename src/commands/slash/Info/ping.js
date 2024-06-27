@@ -16,7 +16,19 @@ module.exports = {
      */
     run: async (client, interaction) => {
 
-        await interaction.reply({ content: "`" + client.ws.ping + "ms`", ephemeral: true });
+        const uptimeSeconds = Math.floor(client.uptime / 1000);
+        const sent = await interaction.reply({ content: '*📡 Calculando latencia...*', fetchReply: true, ephemeral: true });
+        const timeTaken = sent.createdTimestamp - interaction.createdTimestamp;
+
+        const embed = new EmbedBuilder()
+            .addFields(
+                { name: 'Bot', value: "`" + `${timeTaken}ms` + "`", inline: false },
+                { name: 'Websocket', value: "`" + `${client.ws.ping}ms` + "`", inline: false },
+                { name: 'Tiempo Online', value: `<t:${Math.floor((Date.now() - client.uptime) / 1000)}:R>`, inline: false },
+            )
+            .setColor(embedSettings.color);
+
+        await interaction.editReply({ content: "", embeds: [embed], ephemeral: true });
 
     }
 };

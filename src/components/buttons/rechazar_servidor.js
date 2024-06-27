@@ -5,7 +5,7 @@ const { embedSettings } = require("../../config")
 const GuildSchema = require('../../schemas/GuildSchema');
 
 module.exports = {
-    customId: 'aceptar_servidor',
+    customId: 'rechazar_servidor',
     /**
      * 
      * @param {ExtendedClient} client 
@@ -22,25 +22,32 @@ module.exports = {
         if (!owner) return interaction.reply({ content: "⚠️ No he encontrado al dueño del servidor.", ephemeral: true })
         if (guild.solicitud !== "pendiente") return interaction.reply({ content: "⚠️ El servidor ya no está en pendiente.", ephemeral: true })
 
-        guild.solicitud = "aceptada"
+        guild.solicitud = "rechazada"
         await guild.save()
 
         const embed = new EmbedBuilder()
-            .setTitle("¡Enhorabuena!")
-            .setDescription(`La solicitud de su servidor **${guildInfo.name}** para formar parte de GrowUp ha sido aceptada. Ahora su servidor es visible desde el comando **/discover**, los servidores se ordenan según su último boost. Para boostear cualquier servidor utiliza **/boost**.`)
+            .setTitle("Lo sentimos")
+            .setDescription(`La solicitud de su servidor **${guildInfo.name}** para formar parte de GrowUp ha sido rechazada. Si tiene alguna duda de porque, únase al servidor de soporte.`)
             .setColor(embedSettings.color)
 
-        const aceptado = new ButtonBuilder()
-            .setCustomId(`aceptado`)
-            .setLabel('Aceptado')
-            .setStyle(ButtonStyle.Success)
+        const rechazado = new ButtonBuilder()
+            .setCustomId(`rechazado`)
+            .setLabel('Rechazado')
+            .setStyle(ButtonStyle.Danger)
             .setDisabled(true)
-            
 
         const button = new ActionRowBuilder()
-            .addComponents(aceptado);
+            .addComponents(rechazado);
 
-        owner.send({ embeds: [embed] })
+        const soporte = new ButtonBuilder()
+            .setURL("https://dsc.gg/growup-soporte")
+            .setLabel('Servidor de Soporte')
+            .setStyle(ButtonStyle.Link);
+
+        const button2 = new ActionRowBuilder()
+            .addComponents(soporte);
+
+        owner.send({ embeds: [embed], components: [button2] })
         await interaction.update({ components: [button] }).catch(console.error);
 
     }

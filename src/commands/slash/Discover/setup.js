@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, PermissionFlagsBits } = require("discord.js");
+const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, PermissionFlagsBits, ButtonBuilder, ButtonStyle } = require("discord.js");
 const ExtendedClient = require("../../../class/ExtendedClient");
 const config = require("../../../config");
 const { embedSettings } = require("../../../config")
@@ -26,7 +26,7 @@ module.exports = {
     const ownerId = interaction.guild.ownerId
     if (interaction.user.id !== ownerId) return interaction.update({ content: `⚠️ No eres el dueño de este servidor` })
 
-    const embed_server = new EmbedBuilder()
+    const embed = new EmbedBuilder()
       .setTitle("Setup")
       .setDescription(`¡Bienvenido al comando de configuración! Soy GrowUp, tu asistente personal dedicado a dar a conocer tu propio servidor.
 Con este comando puedes iniciar el proceso de subida de tu servidor de manera rápida y sencilla, a continuación verás un botón el cual te mostrará un formulario. 
@@ -43,7 +43,7 @@ Se te pedirá una descripción para tu servidor.
     const button = new ActionRowBuilder()
       .addComponents(show_modal);
 
-    interaction.reply({ embeds: [embed], components: [module_menu] });
+    interaction.reply({ embeds: [embed], components: [button] });
 
   },
 };
