@@ -3,6 +3,7 @@ const ExtendedClient = require('../../class/ExtendedClient');
 const config = require("../../config");
 const { embedSettings } = require("../../config")
 const GuildSchema = require('../../schemas/GuildSchema');
+const moment = require('moment-timezone');
 
 module.exports = {
     customId: 'aceptar_servidor',
@@ -22,6 +23,7 @@ module.exports = {
         if (!owner) return interaction.reply({ content: "⚠️ No he encontrado al dueño del servidor.", ephemeral: true })
         if (guild.solicitud !== "pendiente") return interaction.reply({ content: "⚠️ El servidor ya no está en pendiente.", ephemeral: true })
 
+        guild.lastBoost = new Date().toISOString()
         guild.solicitud = "aceptada"
         await guild.save()
 

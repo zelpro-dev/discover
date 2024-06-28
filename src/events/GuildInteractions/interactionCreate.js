@@ -15,6 +15,10 @@ module.exports = {
     run: async (client, interaction) => {
         if (!interaction.isCommand()) return;
 
+        if (interaction.replied || interaction.deferred) {
+            return;
+        }
+
         if (
             config.handler.commands.slash === false &&
             interaction.isChatInputCommand()

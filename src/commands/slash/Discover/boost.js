@@ -23,6 +23,8 @@ module.exports = {
         return interaction.reply({ content: "⚠️ Este servidor no forma parte de GrowUp.", ephemeral: true });
       }
 
+      if(guild.solicitud !== "aceptado") return interaction.reply({ content: "⚠️ Este servidor no forma parde de GrowUp.", ephemeral: true });
+
       let lastBoost;
       if (guild.lastBoost instanceof Date) {
         lastBoost = moment(guild.lastBoost).add(2, 'hours');
